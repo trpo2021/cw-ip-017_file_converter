@@ -9,6 +9,7 @@ CPPFLAGS = -I src -MP -MMD
 BIN_DIR = bin
 OBJ_DIR = obj
 SRC_DIR = src
+TEST_DIR = test
 
 APP_PATH = $(BIN_DIR)/$(APP_NAME)
 LIB_PATH = $(OBJ_DIR)/$(SRC_DIR)/$(LIB_NAME)/$(LIB_NAME).a

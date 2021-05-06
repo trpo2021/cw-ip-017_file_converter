@@ -8,7 +8,9 @@ int main() {
   char in[200];
   char out[200];
   while (fgets(in, 200, input)) {
-    Header(in, out);
+    if (in[0] == '#') {
+      Header(in, out);
+    }
     fprintf(output, "%s", out);
   }
 }

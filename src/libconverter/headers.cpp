@@ -11,7 +11,9 @@ int Header(char *in, char *out) {
     for (j = 0; j < hash; j++) {
       out[j] = '#';
     }
-    out[j++] = in[i];
+    while (in[i] != '\0') {
+      out[j++] = in[i++];
+    }
     out[j] = '\0';
     return 1;
   }

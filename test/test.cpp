@@ -40,6 +40,11 @@ TEST_CASE("headers") {
 
   strcpy(in, "#######header7");
   Header(in, out);
-  strcpy(check, "#######h");
+  strcpy(check, "#######header7");
+  CHECK(strcmp(out, check) == 0);
+  
+  strcpy(in, "#######header7#");
+  Header(in, out);
+  strcpy(check, "#######header7#");
   CHECK(strcmp(out, check) == 0);
 }

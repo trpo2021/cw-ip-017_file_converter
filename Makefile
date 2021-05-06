@@ -4,7 +4,7 @@ TEST_NAME = converter-test
 
 CC= g++
 CFLAGS = -Wall -Werror -Wextra
-CPPFLAGS = -I src -MP -MMD
+CPPFLAGS = -g -I src -MP -MMD
 
 BIN_DIR = bin
 OBJ_DIR = obj

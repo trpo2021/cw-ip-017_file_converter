@@ -20,7 +20,7 @@ int Header(char *in, char *out) {
   sprintf(out, "<h%d>%c", hash, in[i]);
   j = 5;
   i++;
-  while (in[i] != '\0' && in[i] != EOF) {
+  while (in[i] != '\0' && in[i] != '\n' && in[i] != EOF) {
     out[j] = in[i];
     i++;
     j++;

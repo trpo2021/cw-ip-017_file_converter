@@ -1,24 +1,24 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "libconverter/headers.h"
 #include "libconverter/bold_italic.h"
+#include "libconverter/headers.h"
 #include <cstdio>
 #include <cstring>
 TEST_CASE("headers") {
   char in[80];
   char out[80];
   char check[80];
-  
+
   strcpy(in, "#header1");
   Header(in, out);
   strcpy(check, "<h1>header1</h1>\n");
   CHECK(strcmp(out, check) == 0);
-  
+
   strcpy(in, "##header2");
   Header(in, out);
   strcpy(check, "<h2>header2</h2>\n");
   CHECK(strcmp(out, check) == 0);
-  
+
   strcpy(in, "###header3");
   Header(in, out);
   strcpy(check, "<h3>header3</h3>\n");
@@ -43,16 +43,14 @@ TEST_CASE("headers") {
   Header(in, out);
   strcpy(check, "#######header7");
   CHECK(strcmp(out, check) == 0);
-  
+
   strcpy(in, "#######header7#");
   Header(in, out);
   strcpy(check, "#######header7#");
   CHECK(strcmp(out, check) == 0);
 }
-TEST_CASE("Bold and Italic")
-{
-    SECTION("check text with *")
-    {
+TEST_CASE("Bold and Italic") {
+  SECTION("check text with *") {
     char in[80];
     char out[80];
     char check[80];
@@ -60,38 +58,35 @@ TEST_CASE("Bold and Italic")
     bold(in, out);
     strcpy(check, "<em>Krivosheev</em>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "**Zhurin**");
     bold(in, out);
     strcpy(check, "<strong>Zhurin</strong>");
     CHECK(strcmp(out, check) == 0);
-   
+
     strcpy(in, "***Ystrebov***");
     bold(in, out);
     strcpy(check, "<strong><em>Ystrebov</em></strong>");
     CHECK(strcmp(out, check) == 0);
-
-    }
-    SECTION("check text with _")
-    {
+  }
+  SECTION("check text with _") {
     char in[80];
     char out[80];
     char check[80];
-    
+
     strcpy(in, "_Krivosheev_");
     bold(in, out);
     strcpy(check, "<em>Krivosheev</em>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "__Zhurin__");
     bold(in, out);
     strcpy(check, "<strong>Zhurin</strong>");
     CHECK(strcmp(out, check) == 0);
-   
+
     strcpy(in, "___Ystrebov___");
     bold(in, out);
     strcpy(check, "<strong><em>Ystrebov</em></strong>");
     CHECK(strcmp(out, check) == 0);
-
-    }
-    }
+  }
+}

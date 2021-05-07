@@ -29,9 +29,8 @@ void bold(char *in, char *out) {
       out[j] = '\0';
       strcat(out, "</em>");
       j += strlen("</em>");
-      while (in[i] == su)
-      {
-      i++;
+      while (in[i] == su) {
+        i++;
       }
     } else if (hash == 2) {
       out[j] = '\0';
@@ -45,9 +44,8 @@ void bold(char *in, char *out) {
       out[j] = '\0';
       strcat(out, "</strong>");
       j += strlen("</strong>");
-      while (in[i] == su)
-      {
-      i++;
+      while (in[i] == su) {
+        i++;
       }
     } else if (hash == 3) {
       out[j] = '\0';
@@ -61,35 +59,34 @@ void bold(char *in, char *out) {
       out[j] = '\0';
       strcat(out, "</em></strong>");
       j += strlen("<</em>/strong>");
-      while (in[i] == su)
-      {
-      i++;
+      while (in[i] == su) {
+        i++;
       }
     } else if (hash > 3) {
-      out[j]='\0';
-      strcat (out, "<strong><em>");
-      j+=strlen("<strong><em>");
-      for (int k=3; k<hash; k++){
-      out[j]=su;
-      j++;
+      out[j] = '\0';
+      strcat(out, "<strong><em>");
+      j += strlen("<strong><em>");
+      for (int k = 3; k < hash; k++) {
+        out[j] = su;
+        j++;
       }
-      while(in[i]!= su){
-      out[j]=in[i];
-      j++;
-      i++;
+      while (in[i] != su) {
+        out[j] = in[i];
+        j++;
+        i++;
       }
-      hash=0;
-      while (in[i] == su){
-      hash++;
-      i++;
+      hash = 0;
+      while (in[i] == su) {
+        hash++;
+        i++;
       }
-      for (int k=3; k<hash;k++){
-      out[j]= su;
-      j++;
+      for (int k = 3; k < hash; k++) {
+        out[j] = su;
+        j++;
       }
-      out[j]='\0';
+      out[j] = '\0';
       strcat(out, "</em></strong>");
-      j+=strlen("</em></strong>")  ;
+      j += strlen("</em></strong>");
     }
   }
   out[j] = '\0';

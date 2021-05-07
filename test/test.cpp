@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "libconverter/headers.h"
+#include "libconverter/bold_italic.h"
 #include <cstdio>
 #include <cstring>
 TEST_CASE("headers") {
@@ -48,3 +49,49 @@ TEST_CASE("headers") {
   strcpy(check, "#######header7#");
   CHECK(strcmp(out, check) == 0);
 }
+TEST_CASE("Bold and Italic")
+{
+    SECTION("check text with *")
+    {
+    char in[80];
+    char out[80];
+    char check[80];
+    strcpy(in, "*Krivosheev*");
+    bold(in, out);
+    strcpy(check, "<em>Krivosheev</em>");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "**Zhurin**");
+    bold(in, out);
+    strcpy(check, "<strong>Zhurin</strong>");
+    CHECK(strcmp(out, check) == 0);
+   
+    strcpy(in, "***Ystrebov***");
+    bold(in, out);
+    strcpy(check, "<strong><em>Ystrebov</em></strong>");
+    CHECK(strcmp(out, check) == 0);
+
+    }
+    SECTION("check text with _")
+    {
+    char in[80];
+    char out[80];
+    char check[80];
+    
+    strcpy(in, "_Krivosheev_");
+    bold(in, out);
+    strcpy(check, "<em>Krivosheev</em>");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "__Zhurin__");
+    bold(in, out);
+    strcpy(check, "<strong>Zhurin</strong>");
+    CHECK(strcmp(out, check) == 0);
+   
+    strcpy(in, "___Ystrebov___");
+    bold(in, out);
+    strcpy(check, "<strong><em>Ystrebov</em></strong>");
+    CHECK(strcmp(out, check) == 0);
+
+    }
+    }

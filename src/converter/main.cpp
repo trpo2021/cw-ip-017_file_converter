@@ -10,9 +10,7 @@ int main(int argc, char **argv) {
   FILE *input;
   FILE *output;
   if (argc <= 1) {
-    printf("Ð’Ð²ÐµÐ?Ð¸Ñ‚Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ„Ð°Ð¹Ð»Ð° "
-           "Ð?Ð»Ñ "
-           "ÐºÐ¾Ð½Ð²ÐµÑ€Ñ‚Ð°Ñ†Ð¸Ð¸\n");
+    printf("Ââåäèòå íàçâàíèå ôàéëà äëÿ êîíâåðòàöèè\n);
     return 1;
   }
   input = fopen(argv[1], "r");
@@ -21,7 +19,7 @@ int main(int argc, char **argv) {
     output = stdout;
   }
   if (input == NULL) {
-    printf("ÐÐµÑ‚ Ð?Ð¾ÑÑ‚ÑƒÐ¿Ð° Ðº %s\n", argv[1]);
+    printf("Íåò äîñòóïà ê %s\n", argv[1]);
     return 1;
   }
   char in[1000];

@@ -11,9 +11,9 @@ void bold(char *in, char *out) {
       i++;
       j++;
     }
-    if(in[i] == '\0' || in[i] == EOF){
-    	out[j]='\0';
-    	break;
+    if (in[i] == '\0' || in[i] == EOF) {
+      out[j] = '\0';
+      break;
     }
     su = in[i];
     while (in[i] == su) {

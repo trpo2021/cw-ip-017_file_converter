@@ -34,14 +34,14 @@ int main(int argc, char **argv) {
     }
     i = 0;
     while (in[i] != '\0' && in[i] != EOF) {
-      if (in[i] == '*' || in[i] == '_'){
+      if (in[i] == '*' || in[i] == '_') {
         bold(in, out);
         break;
-        }
+      }
       i++;
     }
     fprintf(output, "%s", out);
-    sprintf(in,"%s","");
+    sprintf(in, "%s", "");
   }
   return 0;
 }

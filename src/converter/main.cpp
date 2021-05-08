@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   FILE *input;
   FILE *output;
   if (argc <= 1) {
-    printf("Введите название файла для конвертации\n);
+    printf("Введите название файла для конвертации\n");
     return 1;
   }
   input = fopen(argv[1], "r");

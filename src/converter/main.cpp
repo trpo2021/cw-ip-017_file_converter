@@ -1,3 +1,4 @@
+#include "libconverter/blockquote.h"
 #include "libconverter/headers.h"
 #include <locale.h>
 #include <stdio.h>
@@ -18,11 +19,11 @@ int main(int argc, char **argv) {
     printf("Нет доступа к %s\n", argv[1]);
     return 1;
   }
-  char in[200];
-  char out[200];
-  while (fgets(in, 200, input)) {
-    if (in[0] == '#') {
-      Header(in, out);
+  char in[1000];
+  char out[1000];
+  while (fgets(in, 1000, input)) {
+    if (in[0] == '>') {
+      blockquote(in, out);
     }
     fprintf(output, "%s", out);
   }

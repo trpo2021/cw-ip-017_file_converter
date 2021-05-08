@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
+#include "libconverter/blockquote.h"
 #include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
 #include <cstdio>
@@ -89,4 +90,32 @@ TEST_CASE("Bold and Italic") {
     strcpy(check, "<strong><em>Ystrebov</em></strong>");
     CHECK(strcmp(out, check) == 0);
   }
+}
+TEST_CASE("Blockquote") {
+
+  char in[200];
+  char out[200];
+  char check[200];
+
+  strcpy(in, ">Zhurin");
+  blockquote(in, out);
+  strcpy(check, "<blockquote> Zhurin </blockquote>");
+  CHECK(strcmp(out, check) == 0);
+
+  strcpy(in, ">>Krivosheev");
+  blockquote(in, out);
+  strcpy(check,
+         "<blockquote> <blockquote> Krivosheev </blockquote> </blockquote>");
+  CHECK(strcmp(out, check) == 0);
+
+  strcpy(in, ">>>Ystrebov");
+  blockquote(in, out);
+  strcpy(check, "<blockquote> <blockquote> <blockquote> Ystrebov </blockquote> "
+                "</blockquote> </blockquote>");
+  CHECK(strcmp(out, check) == 0);
+
+  strcpy(in, ">");
+  blockquote(in, out);
+  strcpy(check, "<blockquote>  </blockquote>");
+  CHECK(strcmp(out, check) == 0);
 }

@@ -99,23 +99,24 @@ TEST_CASE("Blockquote") {
 
   strcpy(in, ">Zhurin");
   blockquote(in, out);
-  strcpy(check, "<blockquote> Zhurin </blockquote>");
+  strcpy(check, "<blockquote>\nZhurin </blockquote>\n");
   CHECK(strcmp(out, check) == 0);
 
   strcpy(in, ">>Krivosheev");
   blockquote(in, out);
-  strcpy(check,
-         "<blockquote> <blockquote> Krivosheev </blockquote> </blockquote>");
+  strcpy(
+      check,
+      "<blockquote>\n<blockquote>\nKrivosheev </blockquote>\n </blockquote>\n");
   CHECK(strcmp(out, check) == 0);
 
   strcpy(in, ">>>Ystrebov");
   blockquote(in, out);
-  strcpy(check, "<blockquote> <blockquote> <blockquote> Ystrebov </blockquote> "
-                "</blockquote> </blockquote>");
+  strcpy(check, "<blockquote>\n<blockquote>\n<blockquote>\nYstrebov "
+                "</blockquote>\n </blockquote>\n </blockquote>\n");
   CHECK(strcmp(out, check) == 0);
 
   strcpy(in, ">");
   blockquote(in, out);
-  strcpy(check, "<blockquote>  </blockquote>");
+  strcpy(check, "<blockquote>\n </blockquote>\n");
   CHECK(strcmp(out, check) == 0);
 }

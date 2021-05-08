@@ -30,7 +30,7 @@ void blockquote(char *in, char *out) {
     for (int k = 0; k < hash; k++) {
       out[j] = '\0';
       strcat(out, " </blockquote>\n");
-      j += strlen("</blockquote>\n");
+      j += strlen(" </blockquote>\n");
     }
     hash = 0;
   }

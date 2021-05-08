@@ -6,11 +6,14 @@ void bold(char *in, char *out) {
   char su;
   while (in[i] != '\n' && in[i] != '\0' && in[i] != EOF) {
     hash = 0;
-    while (in[i] != '*' && in[i] != '\n' && in[i] != '\0' && in[i] != EOF &&
-           in[i] != '_') {
+    while (in[i] != '*' && in[i] != '\0' && in[i] != EOF && in[i] != '_') {
       out[j] = in[i];
       i++;
       j++;
+    }
+    if(in[i] == '\0' || in[i] == EOF){
+    	out[j]='\0';
+    	break;
     }
     su = in[i];
     while (in[i] == su) {

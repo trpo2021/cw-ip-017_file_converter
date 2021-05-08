@@ -1,5 +1,7 @@
 #include "libconverter/blockquote.h"
+#include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
+#include <cstring>
 #include <locale.h>
 #include <stdio.h>
 int main(int argc, char **argv) {
@@ -21,11 +23,25 @@ int main(int argc, char **argv) {
   }
   char in[1000];
   char out[1000];
+  int i;
   while (fgets(in, 1000, input)) {
-    if (in[0] == '>') {
+    if (in[0] == '#') {
+      Header(in, out);
+      strcpy(in, out);
+    } else if (in[0] == '>') {
       blockquote(in, out);
+      strcpy(in, out);
+    }
+    i = 0;
+    while (in[i] != '\0' && in[i] != EOF) {
+      if (in[i] == '*' || in[i] == '_'){
+        bold(in, out);
+        break;
+        }
+      i++;
     }
     fprintf(output, "%s", out);
+    sprintf(in,"%s","");
   }
   return 0;
 }

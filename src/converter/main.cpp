@@ -1,6 +1,7 @@
 #include "libconverter/blockquote.h"
 #include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
+#include "libconverter/url.h"
 #include <cstring>
 #include <locale.h>
 #include <stdio.h>
@@ -9,7 +10,9 @@ int main(int argc, char **argv) {
   FILE *input;
   FILE *output;
   if (argc <= 1) {
-    printf("Введите название файла для конвертации\n");
+    printf("Вве�?ите название файла "
+           "�?ля "
+           "конвертации\n");
     return 1;
   }
   input = fopen(argv[1], "r");
@@ -18,7 +21,7 @@ int main(int argc, char **argv) {
     output = stdout;
   }
   if (input == NULL) {
-    printf("Нет доступа к %s\n", argv[1]);
+    printf("Нет �?оступа к %s\n", argv[1]);
     return 1;
   }
   char in[1000];
@@ -37,6 +40,8 @@ int main(int argc, char **argv) {
       if (in[i] == '*' || in[i] == '_') {
         bold(in, out);
         break;
+      } else if (in[i] == '[') {
+        onURL(in, out);
       }
       i++;
     }

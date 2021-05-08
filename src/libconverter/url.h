@@ -1,2 +1,2 @@
 #pragma once
-int onURL(char* in, char* out);
+int onURL(char *in, char *out);

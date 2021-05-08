@@ -1,6 +1,7 @@
 #include "libconverter/blockquote.h"
 #include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
+#include "libconverter/url.h"
 #include <cstring>
 #include <locale.h>
 #include <stdio.h>
@@ -38,6 +39,9 @@ int main(int argc, char **argv) {
         bold(in, out);
         break;
       }
+      else if (in[i] == '[') {
+        onURL(in, out);
+	  }
       i++;
     }
     fprintf(output, "%s", out);

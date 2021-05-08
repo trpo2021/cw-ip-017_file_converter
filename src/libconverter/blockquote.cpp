@@ -19,8 +19,8 @@ void blockquote(char *in, char *out) {
     out[j] = '\0';
     for (int k = 0; k < hash; k++) {
       out[j] = '\0';
-      strcat(out, "<blockquote> ");
-      j += strlen("<blockquote> ");
+      strcat(out, "<blockquote>\n");
+      j += strlen("<blockquote>\n");
     }
     while (in[i] != su && in[i] != '\0' && in[i] != '\n') {
       out[j] = in[i];
@@ -29,8 +29,8 @@ void blockquote(char *in, char *out) {
     }
     for (int k = 0; k < hash; k++) {
       out[j] = '\0';
-      strcat(out, " </blockquote> ");
-      j += strlen("</blockquote> ");
+      strcat(out, " </blockquote>\n");
+      j += strlen(" </blockquote>\n");
     }
     hash = 0;
   }

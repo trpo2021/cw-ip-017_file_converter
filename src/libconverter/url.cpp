@@ -3,7 +3,7 @@
 #include <stdio.h>
 int onURL(char *in, char *out) {
   int i = 0, j = 0;
-  char link_name[100], link_url[100], all[200];
+  char link_name[100], link_url[100], all[250];
   while (in[i] != '[') {
     i++;
   }

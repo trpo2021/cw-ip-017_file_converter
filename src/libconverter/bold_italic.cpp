@@ -2,10 +2,10 @@
 #include <cstring>
 #include <iostream>
 void bold(char *in, char *out) {
-  int i = 0, j = 0, hash = 0;
+  int i = 0, j = 0, count_symbol = 0;
   char su;
   while (in[i] != '\n' && in[i] != '\0' && in[i] != EOF) {
-    hash = 0;
+    count_symbol = 0;
     while (in[i] != '*' && in[i] != '\0' && in[i] != EOF && in[i] != '_') {
       out[j] = in[i];
       i++;
@@ -17,10 +17,10 @@ void bold(char *in, char *out) {
     }
     su = in[i];
     while (in[i] == su) {
-      hash++;
+     count_symbol++;
       i++;
     }
-    if (hash == 1) {
+    if (count_symbol == 1) {
       out[j] = '\0';
       strcat(out, "<em>");
       j += strlen("<em>");
@@ -35,7 +35,7 @@ void bold(char *in, char *out) {
       while (in[i] == su) {
         i++;
       }
-    } else if (hash == 2) {
+    } else if (count_symbol == 2) {
       out[j] = '\0';
       strcat(out, "<strong>");
       j += strlen("<strong>");
@@ -50,7 +50,7 @@ void bold(char *in, char *out) {
       while (in[i] == su) {
         i++;
       }
-    } else if (hash == 3) {
+    } else if (count_symbol == 3) {
       out[j] = '\0';
       strcat(out, "<strong><em>");
       j += strlen("<strong><em>");
@@ -65,11 +65,11 @@ void bold(char *in, char *out) {
       while (in[i] == su) {
         i++;
       }
-    } else if (hash > 3) {
+    } else if (count_symbol > 3) {
       out[j] = '\0';
       strcat(out, "<strong><em>");
       j += strlen("<strong><em>");
-      for (int k = 3; k < hash; k++) {
+      for (int k = 3; k < count_symbol; k++) {
         out[j] = su;
         j++;
       }
@@ -78,12 +78,12 @@ void bold(char *in, char *out) {
         j++;
         i++;
       }
-      hash = 0;
+      count_symbol = 0;
       while (in[i] == su) {
-        hash++;
+        count_symbol++;
         i++;
       }
-      for (int k = 3; k < hash; k++) {
+      for (int k = 3; k < count_symbol; k++) {
         out[j] = su;
         j++;
       }

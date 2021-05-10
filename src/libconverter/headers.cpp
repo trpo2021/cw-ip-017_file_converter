@@ -8,13 +8,7 @@ int Header(char *in, char *out) {
     i++;
   }
   if (hash > 6) {
-    for (j = 0; j < hash; j++) {
-      out[j] = '#';
-    }
-    while (in[i] != '\0') {
-      out[j++] = in[i++];
-    }
-    out[j] = '\0';
+    strcpy(out,in);
     return 1;
   }
   sprintf(out, "<h%d>%c", hash, in[i]);

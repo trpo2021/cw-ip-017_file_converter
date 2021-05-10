@@ -6,11 +6,10 @@
 #include <locale.h>
 #include <stdio.h>
 int main(int argc, char **argv) {
-  setlocale(LC_ALL, "rus");
   FILE *input;
   FILE *output;
   if (argc <= 1) {
-    printf("Введите название файла для конвертации\n");
+    printf("Enter the name of the file to convert\n");
     return 1;
   }
   input = fopen(argv[1], "r");
@@ -19,7 +18,7 @@ int main(int argc, char **argv) {
     output = stdout;
   }
   if (input == NULL) {
-    printf("Нет доступа к %s\n", argv[1]);
+    printf("No access to file %s\n", argv[1]);
     return 1;
   }
   char in[1000];

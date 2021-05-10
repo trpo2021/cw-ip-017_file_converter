@@ -1,2 +1,2 @@
 #pragma once
-void blockquote(char *in, char *out);
+void blockquote(char* in, char* out);

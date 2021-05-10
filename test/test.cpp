@@ -49,7 +49,7 @@ TEST_CASE("headers") {
   Header(in, out);
   strcpy(check, "#######header7#");
   CHECK(strcmp(out, check) == 0);
-  
+
   strcpy(in, "####header*italic*");
   Header(in, out);
   strcpy(check, "<h4>header*italic*</h4>\n");

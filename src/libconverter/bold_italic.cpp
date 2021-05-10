@@ -17,7 +17,7 @@ void bold(char *in, char *out) {
     }
     su = in[i];
     while (in[i] == su) {
-     count_symbol++;
+      count_symbol++;
       i++;
     }
     if (count_symbol == 1) {

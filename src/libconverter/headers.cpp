@@ -8,7 +8,7 @@ int Header(char *in, char *out) {
     i++;
   }
   if (hash > 6) {
-    strcpy(out,in);
+    strcpy(out, in);
     return 1;
   }
   sprintf(out, "<h%d>%c", hash, in[i]);

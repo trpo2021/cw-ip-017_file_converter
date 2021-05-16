@@ -1,6 +1,7 @@
 #include "libconverter/blockquote.h"
 #include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
+#include "libconverter/images.h"
 #include "libconverter/url.h"
 #include <cstring>
 #include <locale.h>
@@ -37,13 +38,17 @@ int main(int argc, char** argv)
         while (in[i] != '\0' && in[i] != EOF) {
             if (in[i] == '*' || in[i] == '_') {
                 bold(in, out);
-                break;
+                strcpy(in, out);
             } else if (in[i] == '[') {
                 onURL(in, out);
+                strcpy(in, out);
+            } else if (in[i] == '!') {
+                Image(in, out);
+                strcpy(in, out);
             }
             i++;
         }
-        fprintf(output, "%s", out);
+        fprintf(output, "%s\n", out);
         sprintf(in, "%s", "");
     }
     return 0;

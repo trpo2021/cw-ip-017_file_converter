@@ -46,6 +46,10 @@ int main(int argc, char** argv)
                 Image(in, out);
                 strcpy(in, out);
             }
+            if (in[i] == '<') {
+                while (in[i] != '>')
+                    i++;
+            }
             i++;
         }
         fprintf(output, "%s\n", out);

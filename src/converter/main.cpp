@@ -8,6 +8,7 @@
 #include <stdio.h>
 int main(int argc, char** argv)
 {
+    bool is_bold = false;
     FILE* input;
     FILE* output;
     if (argc <= 1) {
@@ -27,6 +28,7 @@ int main(int argc, char** argv)
     char out[1000];
     int i;
     while (fgets(in, 1000, input)) {
+        is_bold = false;
         if (in[0] == '#') {
             Header(in, out);
             strcpy(in, out);
@@ -36,7 +38,8 @@ int main(int argc, char** argv)
         }
         i = 0;
         while (in[i] != '\0' && in[i] != EOF) {
-            if (in[i] == '*' || in[i] == '_') {
+            if ((in[i] == '*' || in[i] == '_') && !is_bold) {
+                is_bold = true;
                 bold(in, out);
                 strcpy(in, out);
             } else if (in[i] == '[') {

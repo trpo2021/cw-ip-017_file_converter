@@ -1,10 +1,11 @@
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "../thirdparty/catch.hpp"
 #include "libconverter/blockquote.h"
-#include "libconverter/code.h"
 #include "libconverter/bold_italic.h"
+#include "libconverter/code.h"
 #include "libconverter/headers.h"
 #include "libconverter/images.h"
+#include "libconverter/strikethrough.h"
 #include <cstdio>
 #include <cstring>
 TEST_CASE("headers")
@@ -183,32 +184,30 @@ TEST_CASE("Images")
         strcpy(check, "<img src=\"src/image\" alt=\"alt image\">");
         CHECK(strcmp(out, check) == 0);
     }
-    }
-    TEST_CASE("code") {
-  
-  char in[80];
-  char out[80];
-  char check[80];
-      
+}
+TEST_CASE("code")
+{
+    char in[80];
+    char out[80];
+    char check[80];
+
     strcpy(in, "`krivosheev`");
     code(in, out);
     strcpy(check, "<code>krivosheev</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "``Zhurin``");
     code(in, out);
     strcpy(check, "<code>Zhurin</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "```KZYa```");
     code(in, out);
     strcpy(check, "<code>`KZYa`</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "````YastrebovS````");
     code(in, out);
     strcpy(check, "<code>``YastrebovS``</code>");
     CHECK(strcmp(out, check) == 0);
-
-    }
-
+}

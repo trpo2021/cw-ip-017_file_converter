@@ -1,2 +1,2 @@
 #pragma once
-void bold(char* in, char* out);
+int bold(char* in, char* out);

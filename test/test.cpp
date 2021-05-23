@@ -200,9 +200,9 @@ TEST_CASE("Images")
     strcpy(check, "<code>Zhurin</code>");
     CHECK(strcmp(out, check) == 0);
     
-    strcpy(in, "```Yastrebov```");
+    strcpy(in, "```KZYa```");
     code(in, out);
-    strcpy(check, "<code>`Yastrebov`</code>");
+    strcpy(check, "<code>`KZYa`</code>");
     CHECK(strcmp(out, check) == 0);
     
     strcpy(in, "````YastrebovS````");

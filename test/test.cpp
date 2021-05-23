@@ -271,4 +271,3 @@ TEST_CASE("hr")
         CHECK(strcmp(out, check) == 0);
     }
 }
-

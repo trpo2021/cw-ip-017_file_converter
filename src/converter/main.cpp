@@ -4,6 +4,7 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/url.h"
+#include "libconverter/list.h"
 #include <cstring>
 #include <locale.h>
 #include <stdio.h>
@@ -42,12 +43,16 @@ int main(int argc, char** argv)
         }
         i = 0;
         while (in[i] != '\0' && in[i] != EOF) {
+        	if (in[i] == '*' || in[i] == '-' || in[i] == '+' || (in[i] >= '0' && in[i] <= '9')) {
+        		List(in, out, i);
+        		strcpy(in, out);
+			}
             if ((in[i] == '*' || in[i] == '_') && !is_bold) {
                 is_bold = true;
                 bold(in, out);
                 strcpy(in, out);
             } else if (in[i] == '[') {
-                onURL(in, out);
+                onURL(in, out, i);
                 strcpy(in, out);
             } else if (in[i] == '!') {
                 Image(in, out);

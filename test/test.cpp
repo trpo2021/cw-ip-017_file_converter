@@ -6,6 +6,8 @@
 #include "libconverter/headers.h"
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
+#include "libconverter/url.h"
+#include "libconverter/list.h"
 #include <cstdio>
 #include <cstring>
 TEST_CASE("headers")
@@ -270,4 +272,73 @@ TEST_CASE("hr")
         strcpy(check, "**_");
         CHECK(strcmp(out, check) == 0);
     }
+    
+TEST_CASE("URL") 
+{
+    char in[200];
+    char out[200];
+    char check[200];
+
+    strcpy(in, "[Zhurin](http://Zhurin\link.com)");
+    onURL(in, out);
+    strcpy(check, "<a href=\"http://Zhurin\link.com\">Zhurin</a>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "[Krivosheev](http://Krivosheev.com)");
+    onURL(in, out);
+    strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "[Ystrebov](Ystrebov.com");
+    onURL(in, out);
+    strcpy(check, "[Ystrebov](Ystrebov.com");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "[Zhurin(Zhurin.com)");
+    onURL(in, out);
+    strcpy(check, "[Zhurin(Zhurin.com)");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "[Krivosheev]");
+    onURL(in, out);
+    strcpy(check, "[Krivosheev]");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "[Ystrebov]Ystrebov.com)");
+    onURL(in, out);
+    strcpy(check, "[Ystrebov]Ystrebov.com)");
+    CHECK(strcmp(out, check) == 0);
+}
+
+TEST_CASE("LIST") 
+{
+    char in[200];
+    char out[200];
+    char check[200];
+
+    strcpy(in, "1. Zhurin");
+    onURL(in, out);
+    strcpy(check, "<ol><li>1.Zhurin</li></oi>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "2. Krivosheev");
+    onURL(in, out);
+    strcpy(check, "<ol><li>2.Krivosheev</li></oi>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "+ Ystrebov");
+    onURL(in, out);
+    strcpy(check, "<ul><li>Ystrebov</li></ul>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "- Zhurin");
+    onURL(in, out);
+    strcpy(check, "<ul><li>Zhurin</li></ul>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "* Krivosheev");
+    onURL(in, out);
+    strcpy(check, "<ul><li>1Krivosheev</li></ul>");
+    CHECK(strcmp(out, check) == 0);
+}
 }

@@ -1,6 +1,7 @@
 #include "libconverter/blockquote.h"
 #include "libconverter/bold_italic.h"
 #include "libconverter/headers.h"
+#include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/url.h"
 #include <cstring>
@@ -32,6 +33,9 @@ int main(int argc, char** argv)
             strcpy(in, out);
         } else if (in[0] == '>') {
             blockquote(in, out);
+            strcpy(in, out);
+        } else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
+            Hr(in, out);
             strcpy(in, out);
         }
         i = 0;

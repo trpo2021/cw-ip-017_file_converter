@@ -1,9 +1,10 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "libconverter/blockquote.h"
-#include "libconverter/code.h"
 #include "libconverter/bold_italic.h"
+#include "libconverter/code.h"
 #include "libconverter/headers.h"
+#include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include <cstdio>
 #include <cstring>
@@ -183,32 +184,89 @@ TEST_CASE("Images")
         strcpy(check, "<img src=\"src/image\" alt=\"alt image\">");
         CHECK(strcmp(out, check) == 0);
     }
-    }
-    TEST_CASE("code") {
-  
-  char in[80];
-  char out[80];
-  char check[80];
-      
+}
+TEST_CASE("code")
+{
+    char in[80];
+    char out[80];
+    char check[80];
+
     strcpy(in, "`krivosheev`");
     code(in, out);
     strcpy(check, "<code>krivosheev</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "``Zhurin``");
     code(in, out);
     strcpy(check, "<code>Zhurin</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "```KZYa```");
     code(in, out);
     strcpy(check, "<code>`KZYa`</code>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "````YastrebovS````");
     code(in, out);
     strcpy(check, "<code>``YastrebovS``</code>");
     CHECK(strcmp(out, check) == 0);
+}
+TEST_CASE("hr")
+{
+    char in[80];
+    char out[80];
+    char check[80];
+    SECTION("*")
+    {
+        strcpy(in, "***");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
 
+        strcpy(in, "********");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
     }
+    SECTION("-")
+    {
+        strcpy(in, "---");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
 
+        strcpy(in, "---------");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+    }
+    SECTION("_")
+    {
+        strcpy(in, "___");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "___________");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+    }
+    SECTION("no hr")
+    {
+        strcpy(in, "**");
+        Hr(in, out);
+        strcpy(check, "**");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "a****");
+        Hr(in, out);
+        strcpy(check, "a****");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "**_");
+        Hr(in, out);
+        strcpy(check, "**_");
+        CHECK(strcmp(out, check) == 0);
+    }
+}

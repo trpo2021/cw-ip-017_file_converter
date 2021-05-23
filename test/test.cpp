@@ -4,8 +4,8 @@
 #include "libconverter/bold_italic.h"
 #include "libconverter/code.h"
 #include "libconverter/headers.h"
+#include "libconverter/hr.h"
 #include "libconverter/images.h"
-#include "libconverter/strikethrough.h"
 #include <cstdio>
 #include <cstring>
 TEST_CASE("headers")
@@ -211,3 +211,64 @@ TEST_CASE("code")
     strcpy(check, "<code>``YastrebovS``</code>");
     CHECK(strcmp(out, check) == 0);
 }
+
+TEST_CASE("hr")
+{
+    char in[80];
+    char out[80];
+    char check[80];
+    SECTION("*")
+    {
+        strcpy(in, "***");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "********");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+    }
+    SECTION("-")
+    {
+        strcpy(in, "---");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "---------");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+    }
+    SECTION("_")
+    {
+        strcpy(in, "___");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "___________");
+        Hr(in, out);
+        strcpy(check, "<hr>\n");
+        CHECK(strcmp(out, check) == 0);
+    }
+    SECTION("no hr")
+    {
+        strcpy(in, "**");
+        Hr(in, out);
+        strcpy(check, "**");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "a****");
+        Hr(in, out);
+        strcpy(check, "a****");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "**_");
+        Hr(in, out);
+        strcpy(check, "**_");
+        CHECK(strcmp(out, check) == 0);
+    }
+}
+

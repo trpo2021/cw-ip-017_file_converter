@@ -3,7 +3,7 @@
 #include <locale.h>
 #include <stdio.h>
 
-int List(char* in, char* out, int i)
+int List(char* in, char* out)
 {
     if ((in[i] == '*' || in[i] == '-' || in[i] == '+') && in[i + 1] == ' ') {
         char common[100];

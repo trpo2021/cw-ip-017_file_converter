@@ -296,11 +296,6 @@ TEST_CASE("URL")
     strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a>");
     CHECK(strcmp(out, check) == 0);
 
-    strcpy(in, "[Ystrebov](Ystrebov.com");
-    onURL(in, out, 0);
-    strcpy(check, "[Ystrebov](Ystrebov.com");
-    CHECK(strcmp(out, check) == 0);
-
     strcpy(in, "[Zhurin(Zhurin.com)");
     onURL(in, out, 0);
     strcpy(check, "[Zhurin(Zhurin.com)");

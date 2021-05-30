@@ -42,7 +42,7 @@ int main(int argc, char** argv)
                 ((in[0] == '*' || in[0] == '-' || in[0] == '+')
                  && (in[1] == ' '))
                 || (in[0] >= '0' && in[0] <= '9' && in[1] == '.')) {
-            List(in, out, 0);
+            List(in, out);
             strcpy(in, out);
         } else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
             Hr(in, out);

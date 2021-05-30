@@ -55,27 +55,27 @@ int onURL(char* in, char* out, int i)
         i++;
         temp++;
         j = 0;
-        while (in[i] != ')' && in[i] != '\n') {
+        while (in[i] != ')' && in[i] != '\n' && in[i] != EOF && i < 100) {
             common[temp] = in[i];
             link_url[j] = in[i];
             j++;
             i++;
             temp++;
         }
-        if (in[i] == ')') {
-            link_url[j] = '\0';
-            sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
-            strcpy(out, all);
-            return 0;
-        }
-
-        else if (in[i] != ')') {
+        if (in[i] != ')') {
             common[temp] = '\0';
             sprintf(all, "%s", common);
             strcpy(out, all);
             return 2;
         }
-    } else {
+        else if (in[i] == ')') {
+            link_url[j] = '\0';
+            sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
+            strcpy(out, all);
+            return 0;
+        }
+    }
+    else {
         common2[temp2] = '\0';
         sprintf(all, "%s", common2);
         strcpy(out, all);

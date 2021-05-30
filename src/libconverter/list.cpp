@@ -7,7 +7,7 @@ int List(char* in, char* out)
 {
     int i = 0;
     if ((in[i] == '*' || in[i] == '-' || in[i] == '+') && in[i + 1] == ' ') {
-        char common[100];
+        char common[200];
 
         int j = 0;
 
@@ -17,7 +17,7 @@ int List(char* in, char* out)
             i++;
         }
 
-        while (j < 100 && in[i] != '+' && in[i] != '-' && in[i] != '*'
+        while (j < 199 && in[i] != '+' && in[i] != '-' && in[i] != '*'
                && in[i + 1] != '\n') {
             common[j] = in[i];
 
@@ -34,7 +34,7 @@ int List(char* in, char* out)
     }
 
     else if ((in[i] >= '0' && in[i] <= '9') && in[i + 1] == '.') {
-        char common[100];
+        char common[200];
 
         int j = 0, check = 0;
 

@@ -5,9 +5,9 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/list.h"
+#include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
 #include <cstring>
-#include <locale.h>
 #include <stdio.h>
 int main(int argc, char** argv)
 {
@@ -39,9 +39,9 @@ int main(int argc, char** argv)
             blockquote(in, out);
             strcpy(in, out);
         } else if (
-                (in[0] == '*' || in[0] == '-' || in[0] == '+'
-                 || (in[0] >= '0' && in[0] <= '9'))
-                && (in[1] == ' ')) {
+                ((in[0] == '*' || in[0] == '-' || in[0] == '+')
+                 && (in[1] == ' '))
+                || (in[0] >= '0' && in[0] <= '9' && in[1] == '.')) {
             List(in, out, 0);
             strcpy(in, out);
         } else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
@@ -64,6 +64,9 @@ int main(int argc, char** argv)
                 is_code = true;
                 code(in, out);
                 strcpy(in, out);
+            } else if (in[i] == '~') {
+                strikethrough(in, out);
+                strcpy(in, out);
             }
             if (in[i] == '<') {
                 while (in[i] != '>')
@@ -72,7 +75,7 @@ int main(int argc, char** argv)
             i++;
         }
         fprintf(output, "%s\n", in);
-        //sprintf(in, "%s", "");
+        // sprintf(in, "%s", "");
     }
     return 0;
 }

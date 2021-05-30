@@ -280,7 +280,7 @@ TEST_CASE("hr")
     }
 }
 
-TEST_CASE("URL") 
+TEST_CASE("URL")
 {
     char in[200];
     char out[200];
@@ -317,7 +317,7 @@ TEST_CASE("URL")
     CHECK(strcmp(out, check) == 0);
 }
 
-TEST_CASE("LIST") 
+TEST_CASE("LIST")
 {
     char in[200];
     char out[200];
@@ -329,12 +329,12 @@ TEST_CASE("LIST")
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
-     List(in, out, 0);
+    List(in, out, 0);
     strcpy(check, "<ol><li>2.Krivosheev</li></oi>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "+ Ystrebov");
-     List(in, out, 0);
+    List(in, out, 0);
     strcpy(check, "<ul><li>Ystrebov</li></ul>");
     CHECK(strcmp(out, check) == 0);
 

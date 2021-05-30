@@ -292,7 +292,7 @@ TEST_CASE("URL")
 
     strcpy(in, "[Ystrebov](Ystrebov.com");
     onURL(in, out, 0);
-    strcpy(check, "<a href=\"Ystrebov.com\">Ystrebov</a>");
+    strcpy(check, "[Ystrebov](Ystrebov.com");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Zhurin(Zhurin.com)");

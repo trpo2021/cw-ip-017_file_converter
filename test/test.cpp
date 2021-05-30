@@ -340,7 +340,7 @@ TEST_CASE("LIST")
 
     strcpy(in, "* Krivosheev");
     List(in, out);
-    strcpy(check, "<ul><li>1Krivosheev</li></ul>");
+    strcpy(check, "<ul><li>Krivosheev</li></ul>");
     CHECK(strcmp(out, check) == 0);
 }
 

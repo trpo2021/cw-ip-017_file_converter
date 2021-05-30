@@ -7,6 +7,7 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/list.h"
+#include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
 #include <cstdio>
 #include <cstring>
@@ -81,6 +82,11 @@ TEST_CASE("Bold and Italic")
         strcpy(in, "***Ystrebov***");
         bold(in, out);
         strcpy(check, "<strong><em>Ystrebov</em></strong>");
+        CHECK(strcmp(out, check) == 0);
+
+        strcpy(in, "***Ystrebov**");
+        bold(in, out);
+        strcpy(check, "***Ystrebov**");
         CHECK(strcmp(out, check) == 0);
     }
     SECTION("check text with _")
@@ -340,5 +346,26 @@ TEST_CASE("LIST")
     strcpy(in, "* Krivosheev");
     List(in, out, 0);
     strcpy(check, "<ul><li>1Krivosheev</li></ul>");
+    CHECK(strcmp(out, check) == 0);
+}
+TEST_CASE("strlkethrough")
+{
+    char in[200];
+    char out[200];
+    char check[200];
+
+    strcpy(in, "~Zhurin~");
+    strikethrough(in, out);
+    strcpy(check, "~Zhurin~");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "~~Krivosheev~~");
+    strikethrough(in, out);
+    strcpy(check, "<del>Krivosheev</del>");
+    CHECK(strcmp(out, check) == 0);
+
+    strcpy(in, "~~~Ystrebov~~~");
+    strikethrough(in, out);
+    strcpy(check, "<del>~Ystrebov~</del>");
     CHECK(strcmp(out, check) == 0);
 }

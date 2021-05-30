@@ -1,13 +1,13 @@
-#include "bold_italic.h"
+#include "libconverter/strikethrough.h"
 #include <cstring>
 #include <iostream>
-int bold(char* in, char* out)
+int strikethrough(char* in, char* out)
 {
     int i = 0, j = 0, count_symbol_l = 0, count_symbol_r = 0, pos_l = 0;
     char su;
     while (in[i] != '\n' && in[i] != '\0' && in[i] != EOF) {
         count_symbol_l = 0;
-        while (in[i] != '*' && in[i] != '\0' && in[i] != EOF && in[i] != '_') {
+        while (in[i] != '~' && in[i] != '\0' && in[i] != EOF) {
             out[j] = in[i];
             i++;
             j++;
@@ -37,10 +37,10 @@ int bold(char* in, char* out)
             i++;
         }
 
-        if (count_symbol_l == 1 && count_symbol_r == 1) {
+        if (count_symbol_l == 2 && count_symbol_r == 2) {
             out[j] = '\0';
-            strcat(out, "<em>");
-            j += strlen("<em>");
+            strcat(out, "<del>");
+            j += strlen("<del>");
             i = pos_l + 1;
             while (in[i] != su) {
                 out[j] = in[i];
@@ -48,39 +48,13 @@ int bold(char* in, char* out)
                 i++;
             }
             out[j] = '\0';
-            strcat(out, "</em>");
-            j += strlen("</em>");
-        } else if (count_symbol_l == 2 && count_symbol_r == 2) {
+            strcat(out, "</del>");
+            j += strlen("</del>");
+        } else if (count_symbol_l > 2 && count_symbol_r > 2) {
             out[j] = '\0';
-            strcat(out, "<strong>");
-            j += strlen("<strong>");
-            i = pos_l + 1;
-            while (in[i] != su) {
-                out[j] = in[i];
-                j++;
-                i++;
-            }
-            out[j] = '\0';
-            strcat(out, "</strong>");
-            j += strlen("</strong>");
-        } else if (count_symbol_l == 3 && count_symbol_r == 3) {
-            out[j] = '\0';
-            strcat(out, "<strong><em>");
-            j += strlen("<strong><em>");
-            i = pos_l + 1;
-            while (in[i] != su) {
-                out[j] = in[i];
-                j++;
-                i++;
-            }
-            out[j] = '\0';
-            strcat(out, "</em></strong>");
-            j += strlen("</em></strong>");
-        } else if (count_symbol_l > 3 && count_symbol_r > 3) {
-            out[j] = '\0';
-            j += strlen("<strong><em>");
-            strcat(out, "<strong><em>");
-            for (int k = 3; k < count_symbol_l; k++) {
+            j += strlen("<del>");
+            strcat(out, "<del>");
+            for (int k = 2; k < count_symbol_l; k++) {
                 out[j] = su;
                 j++;
             }
@@ -90,15 +64,14 @@ int bold(char* in, char* out)
                 j++;
                 i++;
             }
-            for (int k = 3; k < count_symbol_r; k++) {
+            for (int k = 2; k < count_symbol_r; k++) {
                 out[j] = su;
                 j++;
             }
             out[j] = '\0';
-            j += strlen("</em></strong>");
-            strcat(out, "</em></strong>");
-        }
-        else {
+            j += strlen("</del>");
+            strcat(out, "</del>");
+        } else {
             i = 0;
             while (in[i] != '\n' && in[i] != '\0' && in[i] != EOF) {
                 out[j] = in[i];
@@ -106,9 +79,9 @@ int bold(char* in, char* out)
                 j++;
             }
         }
-        i += count_symbol_r;
         count_symbol_r = 0;
         count_symbol_l = 0;
+        break;
     }
     out[j] = '\0';
     return 0;

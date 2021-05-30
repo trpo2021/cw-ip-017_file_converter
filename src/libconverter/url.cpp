@@ -1,7 +1,7 @@
 #include "libconverter/url.h"
 #include <cstring>
 #include <stdio.h>
-int onURL(char* in, char* out, int i)
+int onURL(char *in, char *out, int i)
 {
     int j = 0, temp = 1, temp2;
     char all[500], link_name[200], link_url[200], common[200], common2[200];
@@ -55,27 +55,27 @@ int onURL(char* in, char* out, int i)
         i++;
         temp++;
         j = 0;
-        while (in[i] != ')' && in[i] != '\n') {
-            common[temp] = in[i];
-            link_url[j] = in[i];
-            j++;
-            i++;
-            temp++;
-        }
-        if (in[i] == ')') {
-            link_url[j] = '\0';
-            sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
-            strcpy(out, all);
-            return 0;
-        }
-
-        else if (in[i] != ')') {
-            common[temp] = '\0';
-            sprintf(all, "%s", common);
-            strcpy(out, all);
-            return 2;
-        }
-    } else {
+    while (in[i] != ')' && in[i] != '\n' && in[i] != EOF && i < 100) {
+        common[temp] = in[i];
+        link_url[j] = in[i];
+        j++;
+        i++;
+        temp++;
+    }
+    if (in[i] != ')') {
+        common[temp] = '\0';
+        sprintf(all, "%s", common);
+        strcpy(out, all);
+        return 2;
+    }
+    else if (in[i] == ')'){
+    	link_url[j] = '\0';
+    	sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
+    	strcpy(out, all);
+    	return 0;
+	}
+    }
+	else {
         common2[temp2] = '\0';
         sprintf(all, "%s", common2);
         strcpy(out, all);

@@ -319,27 +319,27 @@ TEST_CASE("LIST")
     char check[200];
 
     strcpy(in, "1. Zhurin");
-    List(in, out, 0);
+    List(in, out);
     strcpy(check, "<ol><li>1.Zhurin</li></oi>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
-    List(in, out, 0);
+    List(in, out);
     strcpy(check, "<ol><li>2.Krivosheev</li></oi>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "+ Ystrebov");
-    List(in, out, 0);
+    List(in, out);
     strcpy(check, "<ul><li>Ystrebov</li></ul>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "- Zhurin");
-    List(in, out, 0);
+    List(in, out);
     strcpy(check, "<ul><li>Zhurin</li></ul>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "* Krivosheev");
-    List(in, out, 0);
+    List(in, out);
     strcpy(check, "<ul><li>1Krivosheev</li></ul>");
     CHECK(strcmp(out, check) == 0);
 }

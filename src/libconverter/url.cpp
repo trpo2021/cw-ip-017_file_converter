@@ -44,7 +44,7 @@ int onURL(char *in, char *out, int i)
     i++;
     j = i;
     temp2 = temp;
-    while (in[j] != '\n' && in[j] != EOF && j < 100) {
+    while (in[j] != '\n' && in[j] != EOF && j < 100 && in[j] != '\0') {
         common2[temp2] = in[j];
         j++;
         temp2++;
@@ -62,9 +62,14 @@ int onURL(char *in, char *out, int i)
         i++;
         temp++;
     }
-    link_url[j] = '\0';
+    if (in[i] == ')'){
+    	link_url[j] = '\0';
+    	sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
+    	strcpy(out, all);
+    	return 0;
+	}
 
-    if (in[i] == '\n') {
+    else if (in[i] != ')') {
         common[temp] = '\0';
         sprintf(all, "%s", common);
         strcpy(out, all);
@@ -77,9 +82,6 @@ int onURL(char *in, char *out, int i)
         strcpy(out, all);
         return 3;
     }
-
-    sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
-    strcpy(out, all);
-    return 0;
+    return 4;
 }
 

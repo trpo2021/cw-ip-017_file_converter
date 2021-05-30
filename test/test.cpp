@@ -280,9 +280,9 @@ TEST_CASE("URL")
     char out[200];
     char check[200];
 
-    strcpy(in, "[Zhurin](http://Zhurin\\link.com)");
+    strcpy(in, "[Zhurin](http://Zhurin/link.com)");
     onURL(in, out, 0);
-    strcpy(check, "<a href=\"http://Zhurin\\link.com\">Zhurin</a>");
+    strcpy(check, "<a href=\"http://Zhurin/link.com\">Zhurin</a>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Krivosheev](http://Krivosheev.com)");

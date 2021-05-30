@@ -61,7 +61,7 @@ int List(char* in, char* out)
         else
             return 1;
 
-        while (in[i + 1] != '\n' && j < 199 ) {
+        while (in[i + 1] != '\n' && j < 199) {
             common[j] = in[i];
 
             i++;

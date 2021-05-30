@@ -83,7 +83,6 @@ int code(char* in, char* out)
         i += count_symbol_r;
         count_symbol_r = 0;
         count_symbol_l = 0;
-        break;
     }
     out[j] = '\0';
     return 0;

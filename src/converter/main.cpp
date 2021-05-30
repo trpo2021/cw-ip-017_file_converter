@@ -50,10 +50,6 @@ int main(int argc, char** argv)
         }
         i = 0;
         while (in[i] != '\0' && in[i] != EOF) {
-            if (in[i] == '<') {
-                while (in[i] != '>')
-                    i++;
-            }
             if ((in[i] == '*' || in[i] == '_') && !is_bold) {
                 is_bold = true;
                 bold(in, out);
@@ -69,10 +65,14 @@ int main(int argc, char** argv)
                 code(in, out);
                 strcpy(in, out);
             }
+            if (in[i] == '<') {
+                while (in[i] != '>')
+                    i++;
+            }
             i++;
         }
-        fprintf(output, "%s\n", out);
-        sprintf(in, "%s", "");
+        fprintf(output, "%s\n", in);
+        //sprintf(in, "%s", "");
     }
     return 0;
 }

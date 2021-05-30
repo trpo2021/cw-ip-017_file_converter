@@ -342,4 +342,3 @@ TEST_CASE("LIST")
     strcpy(check, "<ul><li>1Krivosheev</li></ul>");
     CHECK(strcmp(out, check) == 0);
 }
-}

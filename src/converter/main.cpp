@@ -7,6 +7,7 @@
 #include "libconverter/list.h"
 #include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
+#include "libconverter/list2.h"
 #include <cstring>
 #include <stdio.h>
 int main(int argc, char** argv)
@@ -35,16 +36,23 @@ int main(int argc, char** argv)
         if (in[0] == '#') {
             Header(in, out);
             strcpy(in, out);
-        } else if (in[0] == '>') {
+        }
+        else if (in[0] == '>') {
             blockquote(in, out);
             strcpy(in, out);
-        } else if (
-                ((in[0] == '*' || in[0] == '-' || in[0] == '+')
-                 && (in[1] == ' '))
-                || (in[0] >= '0' && in[0] <= '9' && in[1] == '.')) {
+        }
+
+        else if ((in[0] == '*' || in[0] == '-' || in[0] == '+') && (in[1] == ' ')) {
             List(in, out);
             strcpy(in, out);
-        } else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
+        }
+
+        else if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.') {
+            List2(in, out);
+            strcpy(in, out);
+        }
+
+        else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
             Hr(in, out);
             strcpy(in, out);
         }
@@ -54,17 +62,21 @@ int main(int argc, char** argv)
                 is_bold = true;
                 bold(in, out);
                 strcpy(in, out);
-            } else if (in[i] == '[') {
+            }
+            else if (in[i] == '[') {
                 onURL(in, out, i);
                 strcpy(in, out);
-            } else if (in[i] == '!') {
+            }
+            else if (in[i] == '!') {
                 Image(in, out);
                 strcpy(in, out);
-            } else if (in[i] == '`' && !is_code) {
+            }
+            else if (in[i] == '`' && !is_code) {
                 is_code = true;
                 code(in, out);
                 strcpy(in, out);
-            } else if (in[i] == '~') {
+            }
+            else if (in[i] == '~') {
                 strikethrough(in, out);
                 strcpy(in, out);
             }

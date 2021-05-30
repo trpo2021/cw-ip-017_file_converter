@@ -1,14 +1,14 @@
-#include "libconverter/list.h"
+#include "libconverter/list2.h"
 #include <cstring>
 #include <locale.h>
 #include <stdio.h>
 
-int List(char* in, char* out)
+int List2(char* in, char* out)
 {
     int check = 0;
     char new_list[250], all[250], end[250];
     for (int i = 0; i < 100; i++) {
-        if ((in[i] == '*' || in[i] == '-' || in[i] == '+') && in[i + 1] == ' ') {
+        if (in[i] >= '0' && in[i] <= '9' && in[i + 1] == '.') {
 
             char common[100], start[100], temp[100];
 
@@ -16,13 +16,13 @@ int List(char* in, char* out)
 
             z = i;
 
-            z++;
+            z += 2;
 
             while (in[z] == ' ') {
                 z++;
             }
 
-            while (j < 99 && in[z] != '+' && in[z] != '-' && in[z] != '*' && in[z + 1] != '\n' && in[z] != EOF && in[z] != '\0') {
+            while (j < 99 && in[z + 1] != '\n' && in[z] != EOF && in[z] != '\0' && ((in[z] != '+' && in[z] != '-' && in[z] != '*')) && in[z + 1] != '.') {
 
                 common[j] = in[z];
 
@@ -42,7 +42,7 @@ int List(char* in, char* out)
             }
 
             if (check == 0) {
-                sprintf(start, "<ol><li>%s</li>", common);
+                sprintf(start, "<ul><li>%s</li>", common);
 
                 sprintf(new_list, "%s", start);
 
@@ -50,11 +50,11 @@ int List(char* in, char* out)
             }
         }
 
-        if ((in[i] == '*' || in[i] == '-' || in[i] == '+') && check == 2 && in[i] != '\n') {
+        if ((in[i] >= '0' && in[i] <= '9' && in[i + 1] == '.') && check == 2 && in[i] != '\n') {
             strcat(end, all);
         }
     }
-    sprintf(out, "%s%s</ol>", new_list, end);
+    sprintf(out, "%s%s</ul>", new_list, end);
 
     return 0;
 }

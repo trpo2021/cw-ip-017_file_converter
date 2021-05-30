@@ -62,7 +62,7 @@ int onURL(char *in, char *out, int i)
         i++;
         temp++;
     }
-    if (in[i] == ')'){
+    if (in[i+1] == ')'){
     	link_url[j] = '\0';
     	sprintf(all, "<a href=\"%s\">%s</a>", link_url, link_name);
     	strcpy(out, all);

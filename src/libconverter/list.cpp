@@ -5,6 +5,7 @@
 
 int List(char* in, char* out)
 {
+	int i = 0;
     if ((in[i] == '*' || in[i] == '-' || in[i] == '+') && in[i + 1] == ' ') {
         char common[100];
 

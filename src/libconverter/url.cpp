@@ -4,7 +4,7 @@
 int onURL(char *in, char *out, int i)
 {
     int j = 0, temp = 1, temp2;
-    char all[1000], link_name[500], link_url[500], common[1000], common2[1000];
+    char all[500], link_name[200], link_url[200], common[200], common2[200];
     i++;
     common[0] = '[';
     common2[0] = '[';
@@ -15,7 +15,7 @@ int onURL(char *in, char *out, int i)
         temp++;
     }
 
-    while (in[i] != ']' && in[i] != '\n' && in[i] != EOF && i < 999) {
+    while (in[i] != ']' && in[i] != '\n' && in[i] != EOF && i < 100) {
         link_name[j] = in[i];
         common[temp] = in[i];
         common2[temp] = in[i];
@@ -44,7 +44,7 @@ int onURL(char *in, char *out, int i)
     i++;
     j = i;
     temp2 = temp;
-    while (in[j] != '\n' && in[j] != EOF && j < 999) {
+    while (in[j] != '\n' && in[j] != EOF && j < 100) {
         common2[temp2] = in[j];
         j++;
         temp2++;

@@ -1,2 +1,2 @@
 #pragma once
-void code(char* in, char* out);
+int code(char* in, char* out);

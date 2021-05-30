@@ -97,8 +97,7 @@ int bold(char* in, char* out)
             out[j] = '\0';
             j += strlen("</em></strong>");
             strcat(out, "</em></strong>");
-        }
-        else {
+        } else {
             i = 0;
             while (in[i] != '\n' && in[i] != '\0' && in[i] != EOF) {
                 out[j] = in[i];

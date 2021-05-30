@@ -280,7 +280,7 @@ TEST_CASE("hr")
     }
 }
 
-TEST_CASE("URL")
+/*TEST_CASE("URL")
 {
     char in[200];
     char out[200];
@@ -347,7 +347,7 @@ TEST_CASE("LIST")
     List(in, out, 0);
     strcpy(check, "<ul><li>1Krivosheev</li></ul>");
     CHECK(strcmp(out, check) == 0);
-}
+}*/
 TEST_CASE("strlkethrough")
 {
     char in[200];

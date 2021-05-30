@@ -282,7 +282,7 @@ TEST_CASE("URL")
 
     strcpy(in, "[Zhurin](http://Zhurin\\link.com)");
     onURL(in, out, 0);
-    strcpy(check, "<a href=\"http://Zhurin\\link.com\">Zhurin</a>");
+    strcpy(check, "<a href=\"http://Zhurin\\link.com\	">Zhurin</a>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Krivosheev](http://Krivosheev.com)");
@@ -290,9 +290,9 @@ TEST_CASE("URL")
     strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a>");
     CHECK(strcmp(out, check) == 0);
 
-    strcpy(in, "[Ystrebov](Ystrebov.com");
+    strcpy(in, "[Ystrebov](Ystrebov.com)");
     onURL(in, out, 0);
-    strcpy(check, "[Ystrebov](Ystrebov.com");
+    strcpy(check, "<a href=\"Ystrebov.com\">Ystrebov</a>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Zhurin(Zhurin.com)");

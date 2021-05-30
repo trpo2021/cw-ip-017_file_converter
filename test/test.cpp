@@ -314,9 +314,9 @@ TEST_CASE("URL")
 
 TEST_CASE("LIST")
 {
-    char in[200];
-    char out[200];
-    char check[200];
+    char in[1000];
+    char out[1000];
+    char check[1000];
 
     strcpy(in, "1. Zhurin");
     List(in, out);

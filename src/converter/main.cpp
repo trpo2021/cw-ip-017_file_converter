@@ -65,6 +65,11 @@ int main(int argc, char** argv)
             List(in, out);
             check_for_list ++;
             strcpy(in, out);
+            if ((check_for_list == check) && check_for_list != 0)
+        	{
+            	strcat(in, "</ul>");
+            	check_for_list = 0;
+        	}
         }
 		
         else if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.') 
@@ -78,6 +83,11 @@ int main(int argc, char** argv)
             List2(in, out);
             check_for_list_2 ++;
             strcpy(in, out);
+       	 	if ((check_for_list_2 == check_2) && check_for_list_2 != 0)
+        	{
+            	strcat(in, "</ol>");
+            	check_for_list_2 = 0;
+    		}
         }
 
         else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
@@ -114,16 +124,6 @@ int main(int argc, char** argv)
             }
             i++;
         }
-        if ((check_for_list == check) && check_for_list != 0)
-        {
-            	strcat(in, "</ul>");
-            	check_for_list = 0;
-        }
-        if ((check_for_list_2 == check_2) && check_for_list_2 != 0)
-        {
-            	strcat(in, "</ol>");
-            	check_for_list_2 = 0;
-    	}
         fprintf(output, "%s\n", in);
 		
         // sprintf(in, "%s", "");

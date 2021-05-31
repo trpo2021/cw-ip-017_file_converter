@@ -5,32 +5,30 @@
 
 int List(char* in, char* out)
 {
-            char common[250];
+    char common[250];
 
-            int j = 0, i = 2;
-            
-            if (in[1] != ' ')
-            {
-            	strcpy(out, in);
-            	return 1;
-        	}
-            
-            while (in[i] == ' ') {
-                i++;
-            }
+    int j = 0, i = 2;
 
-            while (j < 100 && in[i] != '\n' && in[i] != EOF && in[i] != '\0') {
+    if (in[1] != ' ') {
+        strcpy(out, in);
+        return 1;
+    }
 
-                common[j] = in[i];
+    while (in[i] == ' ') {
+        i++;
+    }
 
-                j++;
+    while (j < 100 && in[i] != '\n' && in[i] != EOF && in[i] != '\0') {
+        common[j] = in[i];
 
-                i++;
-            }
+        j++;
 
-            common[j] = '\0';
+        i++;
+    }
 
-            sprintf(out, "<li>%s</li>", common);
+    common[j] = '\0';
+
+    sprintf(out, "<li>%s</li>", common);
 
     return 0;
 }

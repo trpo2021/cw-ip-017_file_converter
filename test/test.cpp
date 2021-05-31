@@ -329,7 +329,7 @@ TEST_CASE("LIST")
     strcpy(check, "<li>Krivosheev</li>");
     CHECK(strcmp(out, check) == 0);
 
-    strcpy(in, "+ Ystrebov";
+    strcpy(in, "+ Ystrebov");
     List(in, out);
     strcpy(check, "<li>Ystrebov</li>");
     CHECK(strcmp(out, check) == 0);
@@ -343,17 +343,17 @@ TEST_CASE("LIST")
     List(in, out);
     strcpy(check, "<li>Krivosheev</li>");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "-Zhurin");
     List(in, out);
     strcpy(check, "-Zhurin");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "1.Yastrebov");
     List_numbered(in, out);
     strcpy(check, "1.Yastrebov");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "1. 3464363634");
     List_numbered(in, out);
     strcpy(check, "<li>3464363634</li>");

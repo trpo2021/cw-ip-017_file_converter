@@ -7,6 +7,7 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/list.h"
+#include "libconverter/list_numbered.h"
 #include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
 #include <cstdio>
@@ -319,12 +320,12 @@ TEST_CASE("LIST")
     char check[1000];
 
     strcpy(in, "1. Zhurin 2. Krivosheev 3. Ystrebov");
-    List2(in, out);
+    List_numbered(in, out);
     strcpy(check, "<ol><li>Zhurin </li><li>Krivosheev </li><li>Ystrebov</li></ol>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
-    List2(in, out);
+    List_numbered(in, out);
     strcpy(check, "<ol><li>Krivosheev</li></ol>");
     CHECK(strcmp(out, check) == 0);
 

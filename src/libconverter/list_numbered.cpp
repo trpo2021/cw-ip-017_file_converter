@@ -1,9 +1,9 @@
-#include "libconverter/list2.h"
+#include "libconverter/list_numbered.h"
 #include <cstring>
 #include <locale.h>
 #include <stdio.h>
 
-int List2(char* in, char* out)
+int List_numbered(char* in, char* out)
 {
     int check = 0;
     char new_list[250], all[250], end[250];

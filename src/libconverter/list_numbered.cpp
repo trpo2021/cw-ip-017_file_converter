@@ -5,56 +5,26 @@
 
 int List_numbered(char* in, char* out)
 {
-    int check = 0;
-    char new_list[250], all[250], end[250];
-    for (int i = 0; i < 100; i++) {
-        if (in[i] >= '0' && in[i] <= '9' && in[i + 1] == '.') {
+    char common[250];
 
-            char common[100], start[100], temp[100];
-
-            int j = 0, z = 0;
-
-            z = i;
-
-            z += 2;
-
-            while (in[z] == ' ') {
-                z++;
+            int j = 0, i = 2;
+            
+            while (in[i] == ' ') {
+                i++;
             }
 
-            while (j < 99 && in[z + 1] != '\n' && in[z] != EOF && in[z] != '\0' && ((in[z] != '+' && in[z] != '-' && in[z] != '*')) && in[z + 1] != '.') {
+            while (j < 100 && in[i] != '\n' && in[i] != EOF && in[i] != '\0') {
 
-                common[j] = in[z];
+                common[j] = in[i];
 
                 j++;
 
-                z++;
+                i++;
             }
 
             common[j] = '\0';
 
-            if (check == 1 || check == 2) {
-                sprintf(temp, "<li>%s</li>", common);
-
-                sprintf(all, "%s", temp);
-
-                check = 2;
-            }
-
-            if (check == 0) {
-                sprintf(start, "<li>%s</li>", common);
-
-                sprintf(new_list, "%s", start);
-
-                check = 1;
-            }
-        }
-
-        if ((in[i] >= '0' && in[i] <= '9' && in[i + 1] == '.') && check == 2 && in[i] != '\n') {
-            strcat(end, all);
-        }
-    }
-    sprintf(out, "%s%s", new_list, end);
+            sprintf(out, "<li>%s</li>", common);
 
     return 0;
 }

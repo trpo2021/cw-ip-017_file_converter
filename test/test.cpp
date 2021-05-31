@@ -319,29 +319,44 @@ TEST_CASE("LIST")
     char out[1000];
     char check[1000];
 
-    strcpy(in, "1. Zhurin 2. Krivosheev 3. Ystrebov");
+    strcpy(in, "1. Zhurin");
     List_numbered(in, out);
-    strcpy(check, "<ol><li>Zhurin </li><li>Krivosheev </li><li>Ystrebov</li></ol>");
+    strcpy(check, "<li>Zhurin</li>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
     List_numbered(in, out);
-    strcpy(check, "<ol><li>Krivosheev</li></ol>");
+    strcpy(check, "<li>Krivosheev</li>");
     CHECK(strcmp(out, check) == 0);
 
-    strcpy(in, "+ Ystrebov - Zhurin * Krivosheev");
+    strcpy(in, "+ Ystrebov";
     List(in, out);
-    strcpy(check, "<ul><li>Ystrebov </li><li>Zhurin </li><li>Krivosheev</li></ul>");
+    strcpy(check, "<li>Ystrebov</li>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "- Zhurin");
     List(in, out);
-    strcpy(check, "<ul><li>Zhurin</li></ul>");
+    strcpy(check, "<li>Zhurin</li>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "* Krivosheev");
     List(in, out);
-    strcpy(check, "<ul><li>Krivosheev</li></ul>");
+    strcpy(check, "<li>Krivosheev</li>");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "-Zhurin");
+    List(in, out);
+    strcpy(check, "-Zhurin");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "1.Yastrebov");
+    List_numbered(in, out);
+    strcpy(check, "1.Yastrebov");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "1. 3464363634");
+    List_numbered(in, out);
+    strcpy(check, "<li>3464363634</li>");
     CHECK(strcmp(out, check) == 0);
 }
 

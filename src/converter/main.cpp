@@ -60,26 +60,24 @@ int main(int argc, char** argv)
             strcpy(in, out);
         }
 
-        else if ((in[0] == '-' || in[0] == '*' || in[0] == '+') && in[1] == ' ') 
+        else if (in[0] == '-' || in[0] == '*' || in[0] == '+') 
 		{
-        	if (!check_for_list)
+        	if (!check_for_list && in[1] == ' ')
 			{
         		fprintf(output, "<ul>\n");
-        		
+        		check_for_list = true;
         	}
-        	check_for_list = true;
             List(in, out);
             strcpy(in, out);
         }
 		
-        else if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.') 
+        else if (((in[0] >= '0' && in[0] <= '9') && in[1] == '.'))
 		{
-			if (!check_for_list_number)
+			if (!check_for_list_number && in[2] == ' ')
 			{
         		fprintf(output, "<ol>\n");
-        		
+        		check_for_list_number = true;
         	}
-        	check_for_list_number = true;
             List_numbered(in, out);
             strcpy(in, out);
         }

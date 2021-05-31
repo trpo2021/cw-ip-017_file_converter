@@ -9,6 +9,12 @@ int List(char* in, char* out)
 
             int j = 0, i = 2;
             
+            if (in[1] != ' ')
+            {
+            	strcpy(out, in);
+            	return 1;
+        	}
+            
             while (in[i] == ' ') {
                 i++;
             }

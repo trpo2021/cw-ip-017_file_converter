@@ -12,6 +12,7 @@
 #include <stdio.h>
 int main(int argc, char** argv)
 {
+	int check = 0, check_for_list = 0, check_for_list_2 = 0, check_2 = 0, is_list = 0, is_list_2 = 0;
     bool is_bold = false, is_code = false;
     FILE* input;
     FILE* output;
@@ -32,6 +33,17 @@ int main(int argc, char** argv)
     char out[1000];
     int i;
     while (fgets(in, 1000, input)) {
+    	if ((in[0] == '*' || in[0] == '-' || in[0] == '+') && (in[1] == ' '))
+    		check ++;
+    	if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.')
+    		check_2 ++;
+}
+	for (int i = 0; i< 1000; i++)
+	{
+		in[i] = 0;
+	}
+	input = fopen(argv[1], "r");
+    while (fgets(in, 1000, input)) {
         is_bold = false, is_code = false;
         if (in[0] == '#') {
             Header(in, out);
@@ -42,13 +54,29 @@ int main(int argc, char** argv)
             strcpy(in, out);
         }
 
-        else if ((in[0] == '*' || in[0] == '-' || in[0] == '+') && (in[1] == ' ')) {
+        else if ((in[0] == '*' || in[0] == '-' || in[0] == '+') && (in[1] == ' ')) 
+		{
+        	if (is_list == 0)
+			{
+        		fprintf(output, "<ul>");
+        		is_list = 1;
+        		
+        	}
             List(in, out);
+            check_for_list ++;
             strcpy(in, out);
         }
-
-        else if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.') {
+		
+        else if ((in[0] >= '0' && in[0] <= '9') && in[1] == '.') 
+		{
+			if (is_list_2 == 0)
+			{
+        		fprintf(output, "<ol>");
+        		is_list_2 = 1;
+        		
+        	}
             List2(in, out);
+            check_for_list_2 ++;
             strcpy(in, out);
         }
 
@@ -86,7 +114,18 @@ int main(int argc, char** argv)
             }
             i++;
         }
+        if ((check_for_list == check) && check_for_list != 0)
+        {
+            	strcat(in, "</ul>");
+            	check_for_list = 0;
+        }
+        if ((check_for_list_2 == check_2) && check_for_list_2 != 0)
+        {
+            	strcat(in, "</ol>");
+            	check_for_list_2 = 0;
+    	}
         fprintf(output, "%s\n", in);
+		
         // sprintf(in, "%s", "");
     }
     return 0;

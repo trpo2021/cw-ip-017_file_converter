@@ -320,17 +320,17 @@ TEST_CASE("LIST")
 
     strcpy(in, "1. Zhurin 2. Krivosheev 3. Ystrebov");
     List2(in, out);
-    strcpy(check, "<ul><li>Zhurin </li><li>Krivosheev </li><li>Ystrebov</li></ul>");
+    strcpy(check, "<ol><li>Zhurin </li><li>Krivosheev </li><li>Ystrebov</li></ol>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
     List2(in, out);
-    strcpy(check, "<ol><li>2.Krivosheev</li></oi>");
+    strcpy(check, "<ol><li>Krivosheev</li></ol>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "+ Ystrebov - Zhurin * Krivosheev");
     List(in, out);
-    strcpy(check, "<ol><li>Ystrebov </li><li>Zhurin </li><li>Krivosheev</li></ol>");
+    strcpy(check, "<ul><li>Ystrebov </li><li>Zhurin </li><li>Krivosheev</li></ul>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "- Zhurin");

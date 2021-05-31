@@ -42,7 +42,7 @@ int List(char* in, char* out)
             }
 
             if (check == 0) {
-                sprintf(start, "<ol><li>%s</li>", common);
+                sprintf(start, "<li>%s</li>", common);
 
                 sprintf(new_list, "%s", start);
 
@@ -54,7 +54,7 @@ int List(char* in, char* out)
             strcat(end, all);
         }
     }
-    sprintf(out, "%s%s</ol>", new_list, end);
+    sprintf(out, "%s%s", new_list, end);
 
     return 0;
 }

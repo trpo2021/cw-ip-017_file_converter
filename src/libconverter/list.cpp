@@ -9,11 +9,20 @@ int List(char* in, char* out)
 
     int j = 0, i = 2;
 
-    if (in[1] != ' ') {
+	if (in[0] == '-' || in[0] == '*' || in[0] == '+') {
+    	if (in[1] != ' ') {
+        	strcpy(out, in);
+        	return 1;
+    	}
+	}
+	
+	else if (((in[0] >= '0' && in[0] <= '9') && in[1] == '.')) {
+		if (in[2] != ' ') {
         strcpy(out, in);
         return 1;
-    }
-
+    	}
+	}
+	
     while (in[i] == ' ') {
         i++;
     }

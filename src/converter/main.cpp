@@ -5,7 +5,6 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/list.h"
-#include "libconverter/list_numbered.h"
 #include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
 #include <cstring>
@@ -69,7 +68,7 @@ int main(int argc, char** argv)
                 fprintf(output, "<ol>\n");
                 check_for_list_number = true;
             }
-            List_numbered(in, out);
+            List(in, out);
             strcpy(in, out);
         } else if (in[0] == '*' || in[0] == '-' || in[0] == '_') {
             Hr(in, out);
@@ -102,8 +101,6 @@ int main(int argc, char** argv)
             i++;
         }
         fprintf(output, "%s\n", in);
-
-        // sprintf(in, "%s", "");
     }
     if (check_for_list)
         fprintf(output, "</ul>");

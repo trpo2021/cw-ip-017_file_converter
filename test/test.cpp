@@ -320,12 +320,12 @@ TEST_CASE("LIST")
     char check[1000];
 
     strcpy(in, "1. Zhurin");
-    List_numbered(in, out);
+    List(in, out);
     strcpy(check, "<li>Zhurin</li>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "2. Krivosheev");
-    List_numbered(in, out);
+    List(in, out);
     strcpy(check, "<li>Krivosheev</li>");
     CHECK(strcmp(out, check) == 0);
 

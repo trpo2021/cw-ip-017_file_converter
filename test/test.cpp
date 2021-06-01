@@ -310,12 +310,17 @@ TEST_CASE("URL")
     onURL(in, out);
     strcpy(check, "[Ystrebov]Ystrebov.com)");
     CHECK(strcmp(out, check) == 0);
-    
-    strcpy(in, "[Krivosheev](http://Krivosheev.com)[Krivosheev](http://Krivosheev.com)");
+
+    strcpy(in,
+           "[Krivosheev](http://Krivosheev.com)[Krivosheev](http://"
+           "Krivosheev.com)");
     onURL(in, out);
-    strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a><a href=\"http://Krivosheev.com\">Krivosheev</a>");
+    strcpy(check,
+           "<a "
+           "href=\"http://Krivosheev.com\">Krivosheev</a>[Krivosheev](http://"
+           "Krivosheev.com)");
     CHECK(strcmp(out, check) == 0);
-    
+
     strcpy(in, "ERR[Zhurin](http://Zhurin/link.com)ERR");
     onURL(in, out);
     strcpy(check, "ERR<a href=\"http://Zhurin/link.com\">Zhurin</a>ERR");
@@ -359,12 +364,12 @@ TEST_CASE("LIST")
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "1.Yastrebov");
-    List_numbered(in, out);
+    List(in, out);
     strcpy(check, "1.Yastrebov");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "1. 3464363634");
-    List_numbered(in, out);
+    List(in, out);
     strcpy(check, "<li>3464363634</li>");
     CHECK(strcmp(out, check) == 0);
 }

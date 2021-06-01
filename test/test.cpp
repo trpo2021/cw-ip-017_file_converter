@@ -7,7 +7,6 @@
 #include "libconverter/hr.h"
 #include "libconverter/images.h"
 #include "libconverter/list.h"
-#include "libconverter/list_numbered.h"
 #include "libconverter/strikethrough.h"
 #include "libconverter/url.h"
 #include <cstdio>
@@ -288,28 +287,38 @@ TEST_CASE("URL")
     char check[200];
 
     strcpy(in, "[Zhurin](http://Zhurin/link.com)");
-    onURL(in, out, 0);
+    onURL(in, out);
     strcpy(check, "<a href=\"http://Zhurin/link.com\">Zhurin</a>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Krivosheev](http://Krivosheev.com)");
-    onURL(in, out, 0);
+    onURL(in, out);
     strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a>");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Zhurin(Zhurin.com)");
-    onURL(in, out, 0);
+    onURL(in, out);
     strcpy(check, "[Zhurin(Zhurin.com)");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Krivosheev]");
-    onURL(in, out, 0);
+    onURL(in, out);
     strcpy(check, "[Krivosheev]");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "[Ystrebov]Ystrebov.com)");
-    onURL(in, out, 0);
+    onURL(in, out);
     strcpy(check, "[Ystrebov]Ystrebov.com)");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "[Krivosheev](http://Krivosheev.com)[Krivosheev](http://Krivosheev.com)");
+    onURL(in, out);
+    strcpy(check, "<a href=\"http://Krivosheev.com\">Krivosheev</a><a href=\"http://Krivosheev.com\">Krivosheev</a>");
+    CHECK(strcmp(out, check) == 0);
+    
+    strcpy(in, "ERR[Zhurin](http://Zhurin/link.com)ERR");
+    onURL(in, out);
+    strcpy(check, "ERR<a href=\"http://Zhurin/link.com\">Zhurin</a>ERR");
     CHECK(strcmp(out, check) == 0);
 }
 

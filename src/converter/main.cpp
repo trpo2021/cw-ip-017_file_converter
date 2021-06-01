@@ -81,7 +81,8 @@ int main(int argc, char** argv)
                 bold(in, out);
                 strcpy(in, out);
             } else if (in[i] == '[') {
-                onURL(in, out, i);
+            	
+                onURL(in, out);
                 strcpy(in, out);
             } else if (in[i] == '!') {
                 Image(in, out);

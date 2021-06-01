@@ -3,31 +3,32 @@
 #include <locale.h>
 #include <stdio.h>
 
-int List(char *in, char *out) {
-  char common[250];
+int List(char* in, char* out)
+{
+    char common[250];
 
-  int j = 0, i = 2;
+    int j = 0, i = 2;
 
-  if (in[1] != ' ') {
-    strcpy(out, in);
-    return 1;
-  }
+    if (in[1] != ' ') {
+        strcpy(out, in);
+        return 1;
+    }
 
-  while (in[i] == ' ') {
-    i++;
-  }
+    while (in[i] == ' ') {
+        i++;
+    }
 
-  while (j < 100 && in[i] != '\n' && in[i] != EOF && in[i] != '\0') {
-    common[j] = in[i];
+    while (j < 100 && in[i] != '\n' && in[i] != EOF && in[i] != '\0') {
+        common[j] = in[i];
 
-    j++;
+        j++;
 
-    i++;
-  }
+        i++;
+    }
 
-  common[j] = '\0';
+    common[j] = '\0';
 
-  sprintf(out, "<li>%s</li>", common);
+    sprintf(out, "<li>%s</li>", common);
 
-  return 0;
+    return 0;
 }

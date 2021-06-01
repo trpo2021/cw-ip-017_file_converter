@@ -359,12 +359,12 @@ TEST_CASE("LIST")
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "1.Yastrebov");
-    List(in, out);
+    List_numbered(in, out);
     strcpy(check, "1.Yastrebov");
     CHECK(strcmp(out, check) == 0);
 
     strcpy(in, "1. 3464363634");
-    List(in, out);
+    List_numbered(in, out);
     strcpy(check, "<li>3464363634</li>");
     CHECK(strcmp(out, check) == 0);
 }

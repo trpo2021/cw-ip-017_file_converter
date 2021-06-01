@@ -24,9 +24,8 @@ int onURL(char* in, char* out)
 	{
 	    
 		i++;
+		
 	}
-	
-	i++;
 	
 	while (in[i] != ']' && in[i] != '\n' && in[i] != EOF && i < 399) 
 	{
@@ -108,5 +107,8 @@ int onURL(char* in, char* out)
 		    
 	    }
 	}
+	
+	else strcpy(out, in);
+	
 	return 0;
 }
